@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Notes
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NoteEntryPage : ContentPage
     {
         public NoteEntryPage()
@@ -17,12 +17,12 @@ namespace Notes
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             var note = (Note)BindingContext;
-            note.Date = DateTime.UtcNow;
+            note.Date = DateTime.Now;
             await App.Database.SaveNoteAsync(note);
             await Navigation.PopAsync();
         }
 
-        async void OnDeleteButtonClicked(object sender, EventArgs e)
+         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             var note = (Note)BindingContext;
             await App.Database.DeleteNoteAsync(note);
